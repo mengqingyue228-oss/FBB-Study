@@ -6,7 +6,7 @@ Current Topic: Fixed Broadband Overview
 
 Current Stage: Stage 1 - Foundation and Big Picture
 
-Status: Day001 Materials Ready
+Status: Day001 Beginner Materials Ready
 
 Completed Days: None
 

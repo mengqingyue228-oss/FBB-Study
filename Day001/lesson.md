@@ -2,212 +2,425 @@
 
 Topic: Fixed Broadband Overview
 
-Status: Ready
+Status: Ready - Beginner Friendly
 
-## Learning Goals
+## 今天学习目标
 
-- Understand what fixed broadband is.
-- Build a first mental map of an operator fixed broadband network.
-- Distinguish access, aggregation, core, and service control roles.
-- Connect home internet access to real operator network elements.
-- Learn the first troubleshooting question: where is the fault domain?
+今天不追求记住很多设备名，也不要求你会配置网络。
 
-## Key Concepts
+今天只做一件事：建立“家里上网到底经过了哪些东西”的第一张地图。
 
-- Fixed Broadband
-- FTTH
-- CPE
-- ONT
-- OLT
-- Access Network
-- Aggregation Network
-- Core Network
-- BNG/BRAS
-- Default Gateway
-- DNS
+学完以后，你应该能用自己的话解释：
 
-## 1. What Fixed Broadband Means
+- 固定宽带是什么。
+- 家里的路由器大概做了哪些事。
+- CPE、ONT、OLT、接入网、汇聚网、BNG/BRAS、核心网分别站在哪个位置。
+- 为什么用户说“不能上网”时，工程师不能直接说“核心网有问题”。
+- 为什么排障第一步是判断：问题影响的是一台设备、一个家庭、一个小区，还是更大范围。
 
-Fixed broadband is a network service that gives a fixed location, such as a home, office, shop, or campus, stable internet access through a wired access network.
+## 先用一个生活例子理解上网
 
-In modern operator networks, the common residential form is FTTH: Fiber To The Home.
+想象你从家里寄一封信到国外朋友手里。
 
-The important idea is not the fiber itself. The important idea is that a user at a fixed place is connected into an operator network through a chain of devices and protocol boundaries.
-
-A very simplified path is:
+这封信不会从你手里直接飞到对方家里。它会经过：
 
 ```text
-Home device
-  -> CPE / home router
-  -> ONT
-  -> OLT
-  -> Access network
-  -> Aggregation network
-  -> BNG / BRAS
-  -> Core network
-  -> Internet / service platforms
+你家
+  -> 小区快递柜
+  -> 区域分拣中心
+  -> 城市物流中心
+  -> 国际物流网络
+  -> 对方城市
+  -> 对方家
 ```
 
-Different operators may combine or split some functions, but this map is a useful starting point.
+家庭宽带也类似。
 
-## 2. Home Side: Device, CPE, and ONT
-
-Your laptop or phone normally does not talk directly to the operator core network.
-
-At home, it usually talks first to a CPE, often called a home router.
-
-The CPE commonly provides:
-
-- Wi-Fi access
-- Local LAN switching
-- Private IP address distribution by DHCP
-- NAT
-- Default gateway for home devices
-- DNS forwarding or DNS relay
-
-In FTTH, the ONT is the optical network terminal. It converts the optical access network into an Ethernet-facing interface for the home side.
-
-Sometimes the CPE and ONT are separate devices. Sometimes they are combined into one device.
-
-Engineering meaning:
-
-If one laptop cannot access the internet, the fault may be only inside the home LAN. If all home devices fail, the problem may be the CPE, ONT, fiber access, authentication, or upstream network.
-
-The first practical skill is to avoid treating every problem as an internet problem.
-
-## 3. Access Network: Bringing Users Into the Operator Network
-
-The access network is the part closest to users.
-
-In FTTH, the OLT sits on the operator side and connects many ONTs. The OLT is a major access-layer device.
-
-Its job is not just physical connectivity. In real operator networks, access devices often participate in:
-
-- User line identification
-- VLAN handling
-- Service separation
-- Basic traffic control
-- Access-side fault isolation
-
-At this stage, do not worry about exact PON details yet. The important mental model is:
+你的电脑访问一个网站时，数据也不是直接从电脑飞到网站服务器，而是经过一串网络设备：
 
 ```text
-Many users -> access device -> operator aggregation network
+电脑/手机
+  -> 家用路由器，也就是 CPE
+  -> 光猫，也就是 ONT
+  -> 运营商接入设备，也就是 OLT
+  -> 接入网
+  -> 汇聚网
+  -> BNG/BRAS
+  -> 核心网
+  -> Internet / 网站服务器
 ```
 
-Huawei practice note:
+今天先记住这张图。后面的 120 天，很多知识都会往这张图上挂。
 
-In Huawei-oriented troubleshooting, engineers often start by checking whether the access device sees the user line, service VLAN, port state, and upstream path. The exact commands will be learned later, but the display-oriented mindset starts now.
+## 今天先懂这些词
 
-## 4. Aggregation Network: Collecting Many Access Nodes
+| 术语 | 先用人话理解 | 稍正式一点的说法 | 家庭例子 | 工程意义 |
+| --- | --- | --- | --- | --- |
+| 固定宽带 Fixed Broadband | 给固定地点用的宽带 | 面向家庭、办公室、园区等固定位置的有线接入服务 | 你家装的光纤宽带 | 用户位置通常固定，便于做线路、账号、速率和故障定位 |
+| CPE | 你家里的“网络管家” | Customer Premises Equipment，用户侧设备，常见形态是家用路由器 | 家里的 Wi-Fi 路由器 | 它连接家庭设备，也把家庭网络接到运营商网络 |
+| ONT | 光纤和网线之间的“翻译器” | Optical Network Terminal，光网络终端 | 常说的“光猫” | 把运营商光纤信号转换成家庭侧可用的以太网信号 |
+| OLT | 运营商机房里的“光纤接入总管” | Optical Line Terminal，连接大量 ONT 的接入侧设备 | 一个小区很多光猫上联到运营商 OLT | OLT 是 FTTH 接入网的重要边界 |
+| 接入网 | 最靠近用户的一段运营商网络 | 把大量家庭用户接入运营商网络的部分 | 小区、楼宇、街边机柜到运营商机房这一段 | 很多单户或小区级故障发生在这里 |
+| 汇聚网 | 把很多接入点流量收集起来 | Aggregation Network，汇聚多个接入节点并向上承载 | 多个小区的流量汇到区域节点 | 区域性故障常从这里开始排查 |
+| BNG/BRAS | 宽带用户的“业务登记和放行点” | 宽带网络网关/宽带远程接入服务器 | 判断这个宽带账号是谁、能不能上网、给什么地址 | 和用户会话、认证、地址、策略、计费相关 |
+| 核心网 | 运营商的大动脉 | 承载跨区域、大规模流量的网络 | 城市之间、运营商之间的大路 | 不要一有问题就怀疑核心网，核心网通常不是第一嫌疑 |
+| 默认网关 | 出门第一站 | 本地设备访问外部网络时默认交给的下一跳 | 你家电脑出门先把数据交给家用路由器 | 判断“能不能出家门”的关键点 |
+| DNS | 网站名字翻译员 | 把域名翻译成 IP 地址的系统 | 把 `www.example.com` 查成某个 IP 地址 | DNS 坏了会表现得像“网页打不开”，但链路可能没坏 |
 
-An operator does not connect every OLT directly to the internet.
+## 1. 固定宽带到底是什么
 
-The aggregation network collects traffic from many access nodes and carries it toward service control and core layers.
+固定宽带就是：运营商给一个固定地点提供稳定上网能力。
 
-It usually focuses on:
+比如：
 
-- High-capacity Ethernet transport
-- VLAN or QinQ service transport
-- Redundancy
-- Regional traffic collection
-- Routing or Layer 2 forwarding, depending on design
+- 家庭光纤宽带
+- 办公室专线或企业宽带
+- 商铺宽带
+- 园区宽带
 
-Engineering meaning:
+它和手机流量不一样。手机移动网络的用户位置一直变，基站也会切换；固定宽带一般绑定一个安装地点，线路、账号、设备和地址都比较稳定。
 
-If one household fails, suspect the home side or access side first. If many users under one access node fail, suspect access equipment or uplink. If many access nodes in a region fail, suspect aggregation or upstream service control.
-
-This is why network engineers always ask: how wide is the impact?
-
-## 5. BNG / BRAS: Where Broadband Users Become Managed Subscribers
-
-BNG means Broadband Network Gateway. BRAS means Broadband Remote Access Server.
-
-For today, treat them as the service control boundary for broadband users.
-
-The BNG/BRAS may handle:
-
-- User session control
-- Subscriber authentication
-- IP address assignment
-- Policy enforcement
-- Accounting
-- Traffic steering toward the internet or service platforms
-
-In many operator networks, this is where a home broadband user becomes a recognized subscriber rather than just traffic coming from an access port.
-
-Do not memorize configuration yet. Memorize the role:
+你未来学固网，核心不是背设备型号，而是理解：
 
 ```text
-Access brings users in.
-Aggregation carries users upward.
-BNG/BRAS controls broadband subscriber service.
-Core carries traffic at scale.
+用户怎么接入
+流量怎么上送
+账号怎么识别
+地址怎么分配
+故障怎么定位
+网络怎么自动化运维
 ```
 
-## 6. Core Network and Internet Connectivity
+## 2. CPE：家里的网络管家
 
-The core network carries large-scale traffic between regions, service platforms, peering points, and the public internet.
+CPE 可以先理解成你家里的家用路由器。
 
-The core is designed for:
+它不是只负责发 Wi-Fi。它往往同时做很多事。
 
-- High capacity
-- High reliability
-- Fast routing convergence
-- Interconnection with other networks
-- Service reachability
+### 2.1 家庭局域网交换
 
-For a fixed broadband learner, the core matters because user experience depends on the whole path. But in troubleshooting, you should not jump to the core too early.
+先看一个不访问互联网的例子。
 
-Most user complaints start closer to the edge:
+假设你家里有：
 
-- Home Wi-Fi
-- CPE
-- ONT
-- Access line
-- Access VLAN or service path
-- BNG/BRAS session or address assignment
+- 一台电脑
+- 一部手机
+- 一台 NAS 或电视盒子
 
-## 7. Why This Matters in the AI Era
+电脑想把一个视频文件传给手机，这件事理论上不需要出互联网。它们都在你家里，只需要在家庭网络内部互相找到并传数据。
 
-AI can help generate commands, summarize logs, and compare configurations.
-
-But AI is weak if the engineer does not know the network boundary being investigated.
-
-Long-term valuable knowledge is the ability to reason:
-
-- Which layer am I looking at?
-- Which device owns this function?
-- What should be true if the network is healthy?
-- Is this a single-user, access-node, regional, or core-wide issue?
-- Which evidence would separate these possibilities?
-
-This is why Day001 starts from architecture, not commands.
-
-## 8. First Troubleshooting Map
-
-When a home user says "the internet is not working", ask:
-
-1. Is the device connected to Wi-Fi or Ethernet?
-2. Does the device have an IP address?
-3. Can it reach the home gateway?
-4. Can the home gateway reach the operator side?
-5. Is the ONT online?
-6. Is the access service path normal?
-7. Is the broadband session normal on BNG/BRAS?
-8. Is DNS working?
-9. Is the target service reachable?
-
-You do not need to solve all of these today. You only need to see that "internet not working" is not one problem. It is a symptom across many possible boundaries.
-
-## Summary
-
-Fixed broadband is a service chain, not a single device.
-
-The first useful map is:
+这时候，CPE 的交换功能就像家里的“内部前台”：
 
 ```text
-Home device -> CPE/ONT -> OLT/access -> aggregation -> BNG/BRAS -> core -> internet
+电脑 -> CPE -> 手机
 ```
 
-Today's key learning outcome is to explain what each major part does and why fault isolation starts by locating the affected boundary.
+它帮助家庭内部设备互相转发数据。
+
+稍正式一点说：局域网交换就是在同一个本地网络里，根据设备的 MAC 地址，把数据帧转发给正确的家庭设备。
+
+今天不需要死记 MAC 地址。先记住：家庭设备之间互访，不一定要上互联网，家用路由器内部也在做转发。
+
+### 2.2 DHCP 分配私网 IP
+
+你把手机连上家里 Wi-Fi 时，手机为什么能自动获得一个地址，比如：
+
+```text
+192.168.1.23
+```
+
+你没有手动填写这个地址。是谁给它的？
+
+通常是家用路由器，也就是 CPE。
+
+DHCP 可以理解成“自动发门牌号”的服务。
+
+家庭例子：
+
+```text
+手机：我刚加入这个家庭网络，请给我一个地址。
+CPE：好，你用 192.168.1.23，默认网关是 192.168.1.1，DNS 也先用我。
+```
+
+稍正式一点说：DHCP 是 Dynamic Host Configuration Protocol，动态主机配置协议。它可以自动给设备分配 IP 地址、默认网关、DNS 等网络参数。
+
+如果 DHCP 出问题，设备可能连上 Wi-Fi，但拿不到正确 IP，于是看起来就是“不能上网”。
+
+### 2.3 私网 IP
+
+你家里的 `192.168.x.x`、`10.x.x.x` 这类地址，通常叫私网 IP。
+
+它们像“小区内部房号”。
+
+比如：
+
+```text
+你家手机：192.168.1.23
+你家电脑：192.168.1.24
+你家路由器：192.168.1.1
+```
+
+这些地址在你家里有意义，但互联网不能直接拿它们定位到你家手机。因为全世界很多家庭都在用类似的私网地址。
+
+### 2.4 NAT
+
+NAT 可以先理解成“家庭代表对外说话”。
+
+家里很多设备都有自己的私网 IP，但访问互联网时，外部网站通常看到的是你家宽带的公网出口地址，而不是每个家庭设备自己的私网地址。
+
+生活类比：
+
+```text
+家里有很多人。
+对外寄信时，统一写这个家庭的对外地址。
+回信到了家门口，再由家里的人分给具体成员。
+```
+
+网络里也是类似：
+
+```text
+手机 192.168.1.23 -> CPE 做 NAT -> 运营商/互联网看到公网地址
+电脑 192.168.1.24 -> CPE 做 NAT -> 运营商/互联网也看到公网地址
+```
+
+稍正式一点说：NAT 是 Network Address Translation，网络地址转换。它把内部私网地址转换成外部可路由地址，并记录连接关系，方便回包回来时再交给正确的内部设备。
+
+今天先记住两个效果：
+
+- 家里多个设备可以共享一个对外地址上网。
+- 外部互联网一般不能直接主动访问你家里的某台私网设备，除非做端口映射等特殊配置。
+
+### 2.5 默认网关
+
+默认网关可以理解成“出小区的大门”。
+
+你家电脑要访问你家手机，如果都在同一个家庭网络里，可能不需要出门。
+
+但如果电脑要访问 `www.google.com`，目标明显不在你家里。电脑不知道全世界每个网站怎么走，于是它把数据交给默认网关。
+
+家庭里默认网关通常就是路由器的 LAN 口地址，例如：
+
+```text
+192.168.1.1
+```
+
+稍正式一点说：默认网关是当设备不知道某个目标地址该怎么直达时，默认交给的下一跳设备。
+
+排障意义：
+
+- 能 ping 通默认网关：说明你到家用路由器这段大概率正常。
+- ping 不通默认网关：先不要怀疑运营商，可能是 Wi-Fi、网线、本机 IP 或 CPE 问题。
+
+### 2.6 DNS 转发 / DNS relay
+
+DNS 可以理解成“电话簿”。
+
+你记得网站名字：
+
+```text
+www.example.com
+```
+
+但电脑真正访问时需要 IP 地址。DNS 就负责把名字查成地址。
+
+很多家庭路由器会扮演 DNS relay：
+
+```text
+电脑问 CPE：www.example.com 是哪个 IP？
+CPE 如果知道就回答；不知道就帮电脑去问上游 DNS。
+```
+
+所以你在电脑上看到 DNS 服务器可能就是家用路由器：
+
+```text
+192.168.1.1
+```
+
+这不代表路由器知道全世界所有域名，它可能只是帮你转问真正的 DNS 服务器。
+
+排障意义：
+
+- 能 ping 通 `8.8.8.8`，但打不开 `www.google.com`，可能是 DNS 问题。
+- DNS 问题会让人误以为“互联网断了”，但底层链路可能还通。
+
+## 3. ONT：光纤和家庭网线之间的翻译器
+
+ONT 常被叫作“光猫”。
+
+它的作用可以先理解成：
+
+```text
+运营商光纤语言 <-> 家庭以太网语言
+```
+
+光纤里传的是光信号，你家电脑和路由器用的是以太网/Wi-Fi 这套方式。ONT 就站在中间做接入转换。
+
+有的家庭里：
+
+```text
+光纤 -> ONT -> CPE 路由器 -> 手机/电脑
+```
+
+也有的家庭里，ONT 和 CPE 是一体机：
+
+```text
+光纤 -> 光猫路由一体机 -> 手机/电脑
+```
+
+## 4. OLT：运营商侧的光纤接入总管
+
+如果 ONT 是你家里的光猫，那么 OLT 就在运营商侧。
+
+你可以把 OLT 想成“小区或片区很多光猫的上级接入设备”。
+
+简化理解：
+
+```text
+很多家庭 ONT
+  -> 汇到运营商 OLT
+  -> 再进入运营商网络
+```
+
+今天不深入 PON、分光器、上行时隙这些细节。先记住：
+
+- ONT 更靠近用户家里。
+- OLT 更靠近运营商机房或接入节点。
+- 固网接入排障经常要看 ONT 是否在线、OLT 是否看到用户、端口和业务是否正常。
+
+## 5. 接入网、汇聚网、核心网：从小路到主干道
+
+可以用道路系统理解：
+
+```text
+你家门口的小路：接入网
+区域道路：汇聚网
+城市高速/国家高速：核心网
+```
+
+### 接入网
+
+最靠近用户，把大量家庭和企业接进来。
+
+如果只有某一个家庭不能上网，接入网或家庭侧是重点怀疑对象。
+
+### 汇聚网
+
+把很多接入节点的流量收集起来。
+
+如果一个小区、一个片区或多个接入点都有问题，汇聚网就进入排查范围。
+
+### 核心网
+
+运营商的大动脉，承载更大范围的流量。
+
+核心网当然重要，但排障时不能一上来就怀疑核心网。因为用户问题大多数先发生在更靠近用户的位置。
+
+## 6. BNG/BRAS：宽带用户的业务登记处
+
+BNG/BRAS 可以先理解成运营商宽带业务里的“登记处 + 放行处”。
+
+它关心的是：
+
+- 这个用户是谁？
+- 是否允许上网？
+- 分配什么地址？
+- 速率、策略、计费怎么处理？
+- 用户流量应该送到哪里？
+
+如果家庭侧、接入侧都正常，但用户账号、会话、地址分配异常，问题可能就在 BNG/BRAS 或相关系统附近。
+
+今天只要记住：BNG/BRAS 不是家里的设备，而是运营商网络里管理宽带用户业务的关键节点。
+
+## 7. 打开一个网页，大概发生了什么
+
+以打开一个网站为例，粗略流程是：
+
+1. 电脑先确认自己有没有 IP 地址。这个地址通常由 CPE 的 DHCP 分配。
+2. 浏览器输入域名后，电脑需要 DNS 把域名翻译成 IP。
+3. 如果目标不在家里，电脑把数据交给默认网关，也就是 CPE。
+4. CPE 可能做 NAT，把家庭私网地址转换成对外地址。
+5. 数据经过 ONT、OLT、接入网、汇聚网、BNG/BRAS、核心网。
+6. 数据到达网站服务器。
+7. 网站服务器的响应沿路径返回。
+8. CPE 根据 NAT 记录，把回来的数据交给正确的家庭设备。
+
+所以“网页打不开”可能有很多原因：
+
+- 没拿到 IP。
+- 默认网关不通。
+- DNS 查不到。
+- NAT 或出口异常。
+- ONT 离线。
+- 接入网故障。
+- BNG/BRAS 会话异常。
+- 目标网站自身故障。
+
+这就是为什么网络排障要分层、分段、分范围。
+
+## 8. 今天的第一张排障地图
+
+当用户说“不能上网”时，先不要急着判断。
+
+按这个顺序问：
+
+1. 是一台设备不能上网，还是家里所有设备都不能上网？
+2. 设备有没有连上 Wi-Fi 或网线？
+3. 设备有没有拿到 IP 地址？
+4. 能不能 ping 通默认网关？
+5. DNS 是否正常？
+6. ONT 是否在线？
+7. 运营商接入侧是否正常？
+8. BNG/BRAS 上是否有用户会话？
+9. 目标网站或业务本身是否正常？
+
+今天的关键不是解决所有问题，而是理解：每一步都在缩小故障范围。
+
+## 推荐深入阅读
+
+下面这些链接是为 Day001 精选的，不要求一次全部读完。建议按顺序看。
+
+1. [Cloudflare：How does the Internet work?](https://www.cloudflare.com/learning/network-layer/how-does-the-internet-work/)
+   - 推荐理由：非常适合入门，解释“互联网是网络的网络”、packet、protocol、router、switch。
+   - 今天读到什么程度：重点看 “What is the Internet?” 和 “How does the Internet work?”。
+
+2. [Cloudflare：What is a LAN?](https://www.cloudflare.com/learning/network-layer/what-is-a-lan/)
+   - 推荐理由：对应今天的“家庭局域网”和“家庭内部设备互访”。
+   - 今天读到什么程度：重点理解 LAN、router、switch、WAN 的区别。
+
+3. [Cloudflare：What is a router?](https://www.cloudflare.com/learning/network-layer/what-is-a-router/)
+   - 推荐理由：帮助你理解为什么家用路由器既像家庭网络入口，也像出门的下一跳。
+   - 今天读到什么程度：看懂 router 和 modem 的区别即可，不需要记复杂类型。
+
+4. [Cloudflare：What is DNS?](https://www.cloudflare.com/learning/dns/what-is-dns/)
+   - 推荐理由：DNS 是初学者最容易误判的点。网页打不开不一定是网络断了，可能只是名字解析失败。
+   - 今天读到什么程度：重点看 DNS 是如何把域名转换成 IP 地址。
+
+5. [WIRED：DHCP](https://www.wired.com/2010/02/dhcp/)
+   - 推荐理由：很短，适合理解 DHCP 就是自动给设备发 IP 地址。
+   - 今天读到什么程度：读完即可，不需要深入 DHCP 报文。
+
+6. [Wikipedia：Network address translation](https://en.wikipedia.org/wiki/Network_address_translation)
+   - 推荐理由：NAT 的定义比较准确，适合在理解家庭类比后查正式说法。
+   - 今天读到什么程度：只看开头和 “One-to-many NAT”，不要陷入 NAT 类型细节。
+
+7. [Wikipedia：Passive optical network](https://en.wikipedia.org/wiki/Passive_optical_network)
+   - 推荐理由：对应 FTTH、OLT、ONT、PON 的基本位置关系。
+   - 今天读到什么程度：只看 Components and characteristics，知道 OLT/ONT/ODN 的关系即可。
+
+## 今日总结
+
+今天请牢牢记住这一张图：
+
+```text
+电脑/手机
+  -> CPE（家用路由器，负责家庭内部转发、DHCP、NAT、默认网关、DNS relay）
+  -> ONT（光猫，负责光纤和家庭以太网之间的转换）
+  -> OLT（运营商侧接入设备）
+  -> 接入网
+  -> 汇聚网
+  -> BNG/BRAS（宽带用户业务控制点）
+  -> 核心网
+  -> Internet / 网站服务器
+```
+
+如果你能用自己的话解释这条链路，并能说出 DHCP、NAT、默认网关、DNS 大概在家庭上网中起什么作用，Day001 就达标了。
