@@ -6,23 +6,23 @@ This repository is not a learning platform and not a software project. It is a s
 
 ## Current Snapshot
 
-Current Stage: Stage 1 - Foundation
+Current Stage: Stage 1 - Foundation and Big Picture
 
 Current Day: Day001
 
 Current Topic: Fixed Broadband Overview
 
-Status: Not Started
+Status: Day001 Materials Ready
 
 Latest Oral Score: N/A
 
 ## Recent Activity
 
-Latest Learning Day: N/A
+Latest Learning Day: Day001 materials generated on 2026-07-03
 
 Latest Oral Exam: N/A
 
-Latest Lab: N/A
+Latest Lab: Day001 local network observation lab
 
 ## Next Step
 
