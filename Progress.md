@@ -12,8 +12,8 @@ Completed Days: None
 
 Skipped Days: None
 
-Latest Oral Score: N/A
+Latest Oral Score: 90 / 100
 
-Next Topic: Complete Day001 lesson, lab, homework, oral exam, and journal
+Next Topic: Review Day001 Knowledge Review, complete lab and journal
 
 Last Updated: 2026-07-03

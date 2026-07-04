@@ -14,23 +14,23 @@ Current Topic: Fixed Broadband Overview
 
 Status: Day001 Beginner Materials Ready
 
-Latest Oral Score: N/A
+Latest Oral Score: 90 / 100
 
 ## Recent Activity
 
 Latest Learning Day: Day001 beginner-friendly materials revised on 2026-07-03
 
-Latest Oral Exam: N/A
+Latest Oral Exam: Day001 Oral Exam #001 on 2026-07-03
 
 Latest Lab: Day001 local network observation lab
 
 ## Next Step
 
-Start Day001 and complete:
+Continue Day001 and complete:
 
 1. Read `Day001/lesson.md`
 2. Follow `Day001/lab.md`
-3. Complete `Day001/homework.md`
+3. Review `Day001/oral_exam_001_2026-07-03.md`
 4. Fill in `Day001/journal.md`
 
 ## Repository Rules
