@@ -1,19 +1,19 @@
 # Progress
 
-Current Day: Day001
+Current Day: Day002
 
-Current Topic: Fixed Broadband Overview
+Current Topic: Day002 materials pending
 
 Current Stage: Stage 1 - Foundation and Big Picture
 
-Status: Day001 Beginner Materials Ready
+Status: Waiting for Day002 Materials
 
-Completed Days: None
+Completed Days: Day001
 
 Skipped Days: None
 
 Latest Oral Score: 90 / 100
 
-Next Topic: Review Day001 Knowledge Review, complete lab and journal
+Next Topic: Day002, with review of Home Gateway vs ONT Role, DNS Resolution Path, and BNG/BRAS Session Timing
 
 Last Updated: 2026-07-03
