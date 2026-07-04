@@ -10,23 +10,23 @@ Current Stage: Stage 1 - Foundation and Big Picture
 
 Current Day: Day002
 
-Current Topic: Day002 materials pending
+Current Topic: Home Gateway, DNS, NAT, ONT, and BNG/BRAS Role Boundaries
 
-Status: Day001 Completed; waiting for Day002 materials
+Status: Day002 Materials Ready
 
 Latest Oral Score: 90 / 100
 
 ## Recent Activity
 
-Latest Learning Day: Day001 completed on 2026-07-03
+Latest Learning Day: Day002 materials generated on 2026-07-04
 
 Latest Oral Exam: Day001 Oral Exam #001 on 2026-07-03
 
-Latest Lab: Day001 local network observation lab completed
+Latest Lab: Day002 containerlab NAT and gateway observation lab ready
 
 ## Next Step
 
-Start Day002 when materials are generated:
+Start Day002:
 
 1. Review Day001 Knowledge Review points
 2. Read `Day002/lesson.md`
