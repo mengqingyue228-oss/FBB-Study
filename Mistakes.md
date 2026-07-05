@@ -8,6 +8,6 @@ It records knowledge points, not individual questions.
 
 | Knowledge Point | Wrong Count | Correct Count | Consecutive Correct | Mastery Level | Status | Next Review |
 | --- | ---: | ---: | ---: | --- | --- | --- |
-| Home Gateway vs ONT Role | 1 | 0 | 0 | 60% | Learning | After Day002 |
-| DNS Resolution Path | 1 | 0 | 0 | 65% | Learning | After Day002 |
-| BNG/BRAS Session Timing | 1 | 0 | 0 | 60% | Learning | After Day002 |
+| Home Gateway vs ONT Role | 1 | 2 | 1 | 78% | Learning | After Day003 |
+| DNS Resolution Path | 3 | 1 | 0 | 55% | Learning | After Day003 |
+| BNG/BRAS Session Timing | 1 | 2 | 2 | 80% | Learning | After Day003 |

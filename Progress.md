@@ -12,8 +12,8 @@ Completed Days: Day001
 
 Skipped Days: None
 
-Latest Oral Score: 90 / 100
+Latest Oral Score: 80 / 100
 
-Next Topic: Complete Day002 lesson, lab, homework, and oral exam with review of Home Gateway vs ONT Role, DNS Resolution Path, and BNG/BRAS Session Timing
+Next Topic: Review Day002 DNS Resolution Path, then complete lab and journal
 
 Last Updated: 2026-07-04
