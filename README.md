@@ -10,9 +10,9 @@ Current Stage: Stage 1 - Foundation and Big Picture
 
 Current Day: Day003
 
-Current Topic: Day003 materials pending
+Current Topic: Ethernet, MAC, ARP, and default gateway selection
 
-Status: Day002 Completed
+Status: Day003 Materials Ready
 
 Latest Oral Score: 80 / 100
 
@@ -24,9 +24,11 @@ Latest Oral Exam: Day002 Oral Exam #001 on 2026-07-04
 
 Latest Lab: Day002 containerlab NAT and gateway observation lab completed
 
+Latest Materials: Day003 generated on 2026-07-05
+
 ## Next Step
 
-Start Day003 when materials are generated:
+Start Day003:
 
 1. Review Day002 Knowledge Review points
 2. Read `Day003/lesson.md`
