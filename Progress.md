@@ -1,19 +1,19 @@
 # Progress
 
-Current Day: Day002
+Current Day: Day003
 
-Current Topic: Home Gateway, DNS, NAT, ONT, and BNG/BRAS Role Boundaries
+Current Topic: Day003 materials pending
 
 Current Stage: Stage 1 - Foundation and Big Picture
 
-Status: Day002 Materials Ready
+Status: Waiting for Day003 Materials
 
-Completed Days: Day001
+Completed Days: Day001, Day002
 
 Skipped Days: None
 
 Latest Oral Score: 80 / 100
 
-Next Topic: Review Day002 DNS Resolution Path, then complete lab and journal
+Next Topic: Day003 materials, with review of DNS Resolution Path, Home Gateway vs ONT Role, and BNG/BRAS Session Timing
 
 Last Updated: 2026-07-04
