@@ -1,60 +1,51 @@
 # Day003 Homework
 
-Topic: 以太网、MAC、ARP 和默认网关选择
+Topic: IP 承载网入门
 
 Status: Ready - Beginner Friendly
 
 ## Part 1：先用自己的话复述
 
-请不要背定义。用自己的话回答下面问题：
+请不要背定义。用自己的话回答：
 
-1. 为什么说 MAC 地址更像“本地门牌”，不是公网地址？
-2. 以太网帧和 IP 包有什么区别？今天只要求说出“本地投递”和“最终目标”的区别。
-3. 家里电脑访问家里手机传文件，为什么不一定要经过互联网？
-4. CPE 的交换功能在家庭内部互访时大概做什么？
-5. ARP 解决什么问题？它和 DNS 的问题有什么不同？
-6. 为什么 ARP 请求经常是广播？
-7. 访问同一网段设备时，电脑 ARP 查询的是谁？
-8. 访问外网时，电脑为什么 ARP 查询默认网关，而不是远端网站服务器？
-9. 请解释这句话：以太网帧目的 MAC 是网关 MAC，但 IP 包目的 IP 仍是网站 IP。
-10. 如果电脑能查到 DNS 结果，但 ARP 不到默认网关，可能出现什么现象？
+1. 为什么说 IP 承载网像运营商内部的“数据公路网”？
+2. “业务”和“承载”有什么区别？请用电商和快递的例子解释。
+3. IP 包里今天最需要先关注哪两个地址？
+4. 路由器收到一个 IP 包后，为什么要查路由表？
+5. 下一跳是什么意思？它为什么不一定是最终目标？
+6. BNG/BRAS 在家庭宽带用户进入运营商网络时大概做什么？
+7. 汇聚路由器和核心路由器的角色有什么不同？
+8. IP 承载网和光传送网、光接入网分别解决什么问题？
+9. 为什么规划 IP 承载网时要考虑用户规模、带宽、地址和故障域？
+10. 如果用户能 ping 通家庭网关，但访问远端服务器失败，为什么问题可能出现在后续承载路径？
 
 ## Part 2：完成实验
 
 完成 `Day003/lab.md`。
 
-重点不是背命令，而是看懂两条链：
+记录：
 
 ```text
-同网段：
-pc1 -> ARP 查询 pc2 MAC -> 直接发给 pc2
-
-跨网段：
-pc1 -> ARP 查询默认网关 MAC -> 先发给 gw -> gw 再转发到 srv
-```
-
-请记录：
-
-```text
-pc1 eth1 IP：
-pc1 eth2 IP：
+pc1 IP：
 pc1 默认网关：
-pc2 IP：
+r1 用户侧 IP：
+r1 远端侧 IP：
 srv IP：
-访问 pc2 后 pc1 的 ARP/邻居表里出现了谁：
-访问 srv 后 pc1 的 ARP/邻居表里出现了谁：
-一句话解释 DNS 和 ARP 的区别：
+pc1 的默认路由：
+r1 的路由表里有哪些直连网段：
+关掉 ip_forward 后的现象：
+一句话解释 IP 承载：
 ```
 
-如果实验环境暂时跑不起来，请至少阅读 lab 并手画拓扑。今天允许环境问题不阻塞学习。
+如果实验环境暂时跑不起来，请至少阅读 lab 并手画拓扑。
 
-## Part 3：重点复习
+## Part 3：Knowledge Review
 
-结合 Day002 的 Knowledge Review，今天重点复习这 3 点：
+结合 Day002 的 Knowledge Review，只复习下面 3 点：
 
-- DNS Resolution Path：DHCP 给 DNS 服务器地址；DNS 查询返回网站 IP；ARP 查询本地下一跳 MAC。
-- Home Gateway vs ONT Role：默认网关、ARP 下一跳、NAT 常常落在 CPE/路由功能上；普通桥接 ONT 主要做光接入转换。
-- BNG/BRAS Session Timing：访问网站时流量经过 BNG/BRAS 的会话和策略处理，但不是每个网站都重新认证一次。
+- DNS Resolution Path：DNS 查域名对应 IP，不负责决定 IP 承载网路径。
+- Home Gateway vs ONT Role：家庭默认网关/NAT 可能在 CPE 或路由型 ONT；桥接 ONT 主要做光接入转换。
+- BNG/BRAS Session Timing：用户认证和会话通常在接入阶段建立，不是每访问一个网站都重新认证。
 
 ## Part 4：口头问答说明
 
@@ -85,9 +76,9 @@ srv IP：
 
 - [ ] Lesson completed
 - [ ] Lab read or completed
-- [ ] Can explain MAC as local delivery address
-- [ ] Can explain ARP as IP-to-next-hop-MAC resolution
-- [ ] Can distinguish DNS result and ARP result
-- [ ] Can explain why external traffic ARPs for the default gateway
+- [ ] Can explain IP bearer network in plain language
+- [ ] Can explain packet, route, next hop, and router
+- [ ] Can describe BNG/BRAS as a broadband service edge
+- [ ] Can distinguish IP bearer, optical transport, and optical access at a high level
 - [ ] Oral exam completed
 - [ ] Journal completed
