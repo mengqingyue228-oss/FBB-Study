@@ -12,7 +12,7 @@ Current Day: Day003
 
 Current Topic: IP bearer network beginner overview
 
-Status: Day003 Materials Revised
+Status: Rest Day - Day003 Deferred
 
 Latest Oral Score: 80 / 100
 
@@ -26,9 +26,11 @@ Latest Lab: Day002 containerlab NAT and gateway observation lab completed
 
 Latest Materials: Day003 revised for IP bearer-first route on 2026-07-05
 
+Latest Rest Day: Day003 deferred on 2026-07-05
+
 ## Next Step
 
-Start revised Day003:
+Resume revised Day003:
 
 1. Review Day002 Knowledge Review points
 2. Read `Day003/lesson.md`
