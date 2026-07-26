@@ -12,7 +12,7 @@ Current Day: Day003
 
 Current Topic: IP bearer network beginner overview
 
-Status: Ready - Day003 Resumed
+Status: Ready - Day003 Continuing
 
 Latest Oral Score: 80 / 100
 
@@ -28,7 +28,7 @@ Latest Materials: Day003 revised for IP bearer-first route on 2026-07-05
 
 Latest Rest Day: Day003 deferred on 2026-07-05
 
-Latest Automation Run: Day003 resumed on 2026-07-25
+Latest Automation Run: Day003 continued and lab revised on 2026-07-26
 
 ## Next Step
 
@@ -36,7 +36,7 @@ Complete revised Day003:
 
 1. Review Day002 Knowledge Review points
 2. Read `Day003/lesson.md`
-3. Follow `Day003/lab.md`
+3. Follow `Day003/lab.md` with Linux + FRRouting observation
 4. Complete `Day003/homework.md`
 
 ## Repository Rules

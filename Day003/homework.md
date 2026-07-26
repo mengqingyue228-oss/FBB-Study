@@ -2,7 +2,9 @@
 
 Topic: IP 承载网入门
 
-Status: Ready - Beginner Friendly
+Status: Ready - Beginner Friendly Revision
+
+Last Updated: 2026-07-26
 
 ## Part 1：先用自己的话复述
 
@@ -18,6 +20,8 @@ Status: Ready - Beginner Friendly
 8. IP 承载网和光传送网、光接入网分别解决什么问题？
 9. 为什么规划 IP 承载网时要考虑用户规模、带宽、地址和故障域？
 10. 如果用户能 ping 通家庭网关，但访问远端服务器失败，为什么问题可能出现在后续承载路径？
+11. IP 包里的源 IP、目的 IP 和 TTL 分别解决什么问题？
+12. 今天为什么只观察静态/直连路由，而不马上展开 OSPF、BGP、MPLS 或 SRv6？
 
 ## Part 2：完成实验
 
@@ -33,6 +37,7 @@ r1 远端侧 IP：
 srv IP：
 pc1 的默认路由：
 r1 的路由表里有哪些直连网段：
+FRRouting show ip route 里看到了什么：
 关掉 ip_forward 后的现象：
 一句话解释 IP 承载：
 ```

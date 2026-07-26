@@ -2,7 +2,9 @@
 
 Topic: IP 承载网入门：运营商为什么需要一张“送数据的公路网”
 
-Status: Ready - Beginner Friendly
+Status: Ready - Beginner Friendly Revision
+
+Last Updated: 2026-07-26
 
 ## 今天学习目标
 
@@ -59,8 +61,8 @@ Status: Ready - Beginner Friendly
 
 延伸学习：
 
-- [RFC 791: Internet Protocol](https://www.rfc-editor.org/rfc/rfc791)  
-  为什么推荐：这是 IPv4 的基础标准入口，可以帮助你确认 IP 的核心作用是寻址和转发。  
+- [RFC 791: Internet Protocol](https://www.rfc-editor.org/rfc/rfc791)
+  为什么推荐：这是 IPv4 的基础标准入口，可以帮助你确认 IP 的核心作用是寻址和转发。
   今天读到什么程度：只看 Introduction，知道 IP 负责把分组从源送到目的即可。
 
 ## 2. “承载”到底是什么意思
@@ -87,6 +89,12 @@ Status: Ready - Beginner Friendly
 - 业务能否隔离：家庭宽带、政企专线、 IPTV 是否互不影响。
 - 是否好运营：能否统计用户、套餐、流量、故障和质量。
 
+延伸学习：
+
+- [Huawei Carrier IP](https://carrier.huawei.com/en/products/fixed-network/carrier-ip)
+  为什么推荐：这是设备厂商面向运营商 IP 承载场景的官方入口，适合把“承载网”从抽象概念落到骨干、城域、移动回传等真实网络。
+  今天读到什么程度：只看页面开头和 Product Portfolio，知道运营商 IP 网络通常覆盖 backbone、metro、backhaul 等场景即可。
+
 ## 3. IP 包和路由器：今天只先懂“按目的地转发”
 
 IP 包里有很多字段，今天先抓住两个：
@@ -106,6 +114,15 @@ IP 包里有很多字段，今天先抓住两个：
 
 这就是 IP 承载网的基础动作：**查表转发**。
 
+把它按“协议行为”说清楚：
+
+- 解决什么问题：IP 解决“跨多个网络把数据送到目的地址”的问题。
+- 发生在什么阶段：发生在主机已经准备发送数据、每一跳设备收到 IP 包并决定下一跳时。
+- 谁向谁发起：主机或上一跳路由器把 IP 包发给下一跳设备；路由器不是先打电话问路，而是根据本地路由表直接决定。
+- 关键字段：今天先看源 IP、目的 IP、TTL。源 IP 表示谁发出，目的 IP 表示要去哪里，TTL 防止包在网络里无限绕圈。
+- 成功后的网络状态：每一跳都能找到匹配路由，包被逐跳送到目标方向。
+- 失败时的现象：用户可能看到 ping 不通、网页超时、traceroute 停在某一跳，工程师会检查路由表、下一跳、接口状态和丢包位置。
+
 今天不展开 OSPF、IS-IS、BGP、MPLS、SRv6。你只需要先知道：
 
 ```text
@@ -117,8 +134,8 @@ IP 包里有很多字段，今天先抓住两个：
 
 延伸学习：
 
-- [RFC 1812: Requirements for IP Version 4 Routers](https://www.rfc-editor.org/rfc/rfc1812)  
-  为什么推荐：这是 IPv4 路由器行为的经典标准，能确认路由器不是“随便转发”，而是有明确要求。  
+- [RFC 1812: Requirements for IP Version 4 Routers](https://www.rfc-editor.org/rfc/rfc1812)
+  为什么推荐：这是 IPv4 路由器行为的经典标准，能确认路由器不是“随便转发”，而是有明确要求。
   今天读到什么程度：只读 2.2.1 和 2.2.2 附近标题，知道路由器连接多个 IP 网络并转发数据即可。
 
 ## 4. IP 承载网里常见的设备角色
@@ -137,6 +154,11 @@ IP 包里有很多字段，今天先抓住两个：
 - 策略控制：套餐速率、QoS、访问控制、计费相关信息。
 
 华为场景里，BNG/BRAS 功能可能由运营商级路由器或专用宽带网关设备承载。具体产品会随运营商建设年代和网络规模不同而不同。
+
+工程注意点：
+
+- BNG/BRAS 用户容量要按在线用户数、会话数、带宽峰值和认证系统能力一起规划。
+- 它是用户体验的关键边界。认证失败、地址分配失败、策略下发失败，都可能表现为“能连上光猫或 Wi-Fi，但上不了网”。
 
 ### 汇聚路由器
 
@@ -160,6 +182,16 @@ IP 包里有很多字段，今天先抓住两个：
 
 - 华为 NetEngine 系列常出现在运营商 IP 承载、城域、核心、边缘等场景。
 - 这里把它当作真实工程中的设备族例子，不要求记具体配置命令。
+
+延伸学习：
+
+- [Huawei Router & Carrier Ethernet](https://carrier.huawei.com/en/products/fixed-network/carrier-ip/router)
+  为什么推荐：这是华为运营商路由器产品入口，能看到核心、城域、边缘和 BRAS 节点会对应不同设备形态。
+  今天读到什么程度：只看 Router 页面开头和 Related Solutions，建立“不同位置用不同路由器角色”的印象。
+
+- [FRRouting Static Routing Documentation](https://docs.frrouting.net/en/stable-10.1/static.html)
+  为什么推荐：FRRouting 是后续实验会用的开源路由软件，这页能看到静态路由命令如何表达“目的网段 + 下一跳”。
+  今天读到什么程度：只看 Static Route Commands 的 `ip route NETWORK GATEWAY` 形式，不需要理解 VRF、SRv6 等高级内容。
 
 ## 5. IP 承载网和光传送、光接入是什么关系
 
