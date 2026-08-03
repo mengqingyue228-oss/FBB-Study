@@ -30,7 +30,7 @@ Latest Rest Day: Day003 deferred on 2026-07-05
 
 Latest Automation Run: Day003 continued and lab revised on 2026-07-26
 
-Latest Continuation Check: Day003 remains current and ready for oral exam on 2026-08-02
+Latest Continuation Check: Day003 remains current and ready for oral exam on 2026-08-03
 
 ## Next Step
 
