@@ -6,7 +6,7 @@ This repository is not a learning platform and not a software project. It is a s
 
 ## Current Snapshot
 
-Current Stage: Stage 1 - Foundation and Big Picture
+Current Stage: Stage 1 - IP Bearer Network From Zero
 
 Current Day: Day003
 
@@ -24,13 +24,13 @@ Latest Oral Exam: Day002 Oral Exam #001 on 2026-07-04
 
 Latest Lab: Day002 containerlab NAT and gateway observation lab completed
 
-Latest Materials: Day003 revised for IP bearer-first route on 2026-07-05
+Latest Materials: Day003 beginner-friendly IP bearer revision on 2026-07-26
 
 Latest Rest Day: Day003 deferred on 2026-07-05
 
-Latest Automation Run: Day003 continued and lab revised on 2026-07-26
+Latest Automation Run: Day003 checked and retained for make-up study on 2026-08-06
 
-Latest Continuation Check: Day003 remains current and ready for oral exam on 2026-08-05
+Latest Continuation Check: Day003 remains current and ready for oral exam on 2026-08-06
 
 ## Next Step
 
