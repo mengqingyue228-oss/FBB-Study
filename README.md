@@ -28,9 +28,9 @@ Latest Materials: Day003 beginner-friendly IP bearer revision on 2026-07-26
 
 Latest Rest Day: Day003 deferred on 2026-07-05
 
-Latest Automation Run: Day003 checked and retained for make-up study on 2026-08-17
+Latest Automation Run: Day003 checked and retained for make-up study on 2026-08-18
 
-Latest Continuation Check: Day003 remains current and ready for oral exam on 2026-08-17
+Latest Continuation Check: Day003 remains current and ready for oral exam on 2026-08-18
 
 ## Next Step
 
