@@ -185,7 +185,7 @@ IP 包里有很多字段，今天先抓住两个：
 
 延伸学习：
 
-- [Huawei Router & Carrier Ethernet](https://carrier.huawei.com/en/products/fixed-network/carrier-ip/router)
+- [Huawei Routers](https://carrier.huawei.com/en/products/fixed-network/data-communication/router)
   为什么推荐：这是华为运营商路由器产品入口，能看到核心、城域、边缘和 BRAS 节点会对应不同设备形态。
   今天读到什么程度：只看 Router 页面开头和 Related Solutions，建立“不同位置用不同路由器角色”的印象。
 
