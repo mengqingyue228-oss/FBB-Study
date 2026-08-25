@@ -4,7 +4,7 @@ Topic: IP 承载网入门：运营商为什么需要一张“送数据的公路�
 
 Status: Ready - Beginner Friendly Revision
 
-Last Updated: 2026-07-26
+Last Updated: 2026-08-25
 
 ## 今天学习目标
 
@@ -61,7 +61,7 @@ Last Updated: 2026-07-26
 
 延伸学习：
 
-- [RFC 791: Internet Protocol](https://www.rfc-editor.org/rfc/rfc791)
+- [RFC 791: Internet Protocol](https://www.rfc-editor.org/info/rfc791)
   为什么推荐：这是 IPv4 的基础标准入口，可以帮助你确认 IP 的核心作用是寻址和转发。
   今天读到什么程度：只看 Introduction，知道 IP 负责把分组从源送到目的即可。
 
@@ -134,7 +134,7 @@ IP 包里有很多字段，今天先抓住两个：
 
 延伸学习：
 
-- [RFC 1812: Requirements for IP Version 4 Routers](https://www.rfc-editor.org/rfc/rfc1812)
+- [RFC 1812: Requirements for IP Version 4 Routers](https://www.rfc-editor.org/info/rfc1812)
   为什么推荐：这是 IPv4 路由器行为的经典标准，能确认路由器不是“随便转发”，而是有明确要求。
   今天读到什么程度：只读 2.2.1 和 2.2.2 附近标题，知道路由器连接多个 IP 网络并转发数据即可。
 
