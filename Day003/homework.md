@@ -4,7 +4,7 @@ Topic: IP 承载网入门
 
 Status: Ready - Beginner Friendly Revision
 
-Last Updated: 2026-07-26
+Last Updated: 2026-08-28
 
 ## Part 1：先用自己的话复述
 
