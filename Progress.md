@@ -14,6 +14,6 @@ Skipped Days: None
 
 Latest Oral Score: 80 / 100
 
-Next Topic: Complete Day003 IP bearer lesson, Linux + FRRouting lab, homework, and oral exam before opening Day004; keep DNS Resolution Path, Home Gateway vs ONT Role, and BNG/BRAS Session Timing as short Knowledge Review points
+Next Topic: Continue Day003 IP bearer lesson, Linux + FRRouting lab, homework, and oral exam before opening Day004; keep DNS Resolution Path, Home Gateway vs ONT Role, and BNG/BRAS Session Timing as short Knowledge Review points
 
-Last Updated: 2026-08-28
+Last Updated: 2026-08-29
