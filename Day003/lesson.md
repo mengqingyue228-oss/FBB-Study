@@ -4,7 +4,7 @@ Topic: IP 承载网入门：运营商为什么需要一张“送数据的公路�
 
 Status: Ready - Beginner Friendly Revision
 
-Last Updated: 2026-08-29
+Last Updated: 2026-08-30
 
 ## 今天学习目标
 
