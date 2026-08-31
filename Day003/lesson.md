@@ -4,7 +4,7 @@ Topic: IP 承载网入门：运营商为什么需要一张“送数据的公路�
 
 Status: Ready - Beginner Friendly Revision
 
-Last Updated: 2026-08-30
+Last Updated: 2026-08-31
 
 ## 今天学习目标
 
@@ -61,7 +61,7 @@ Last Updated: 2026-08-30
 
 延伸学习：
 
-- [RFC 791: Internet Protocol](https://www.rfc-editor.org/info/rfc791)
+- [RFC 791: Internet Protocol](https://www.rfc-editor.org/rfc/rfc791.html)
   为什么推荐：这是 IPv4 的基础标准入口，可以帮助你确认 IP 的核心作用是寻址和转发。
   今天读到什么程度：只看 Introduction，知道 IP 负责把分组从源送到目的即可。
 
