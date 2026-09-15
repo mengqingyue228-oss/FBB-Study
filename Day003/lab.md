@@ -4,7 +4,7 @@ Topic: 用 Linux + FRRouting 观察“IP 承载”的最小模型
 
 Status: Ready - Beginner Friendly Revision
 
-Last Updated: 2026-09-14
+Last Updated: 2026-09-15
 
 ## 实验目标
 
