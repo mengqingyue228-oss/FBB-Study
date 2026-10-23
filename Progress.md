@@ -16,4 +16,4 @@ Latest Oral Score: 80 / 100
 
 Next Topic: Continue Day003 IP bearer lesson, Linux + FRRouting lab, homework, and oral exam before opening Day004; keep DNS Resolution Path, Home Gateway vs ONT Role, and BNG/BRAS Session Timing as short Knowledge Review points
 
-Last Updated: 2026-10-22 (daily automation check: Day003 remains open; materials retained for make-up study and oral exam)
+Last Updated: 2026-10-23 (daily automation check: Day003 remains open; IP bearer materials refreshed for make-up study and oral exam)
